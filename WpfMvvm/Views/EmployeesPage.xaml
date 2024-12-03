@@ -1,0 +1,78 @@
+<Page x:Class="WpfMvvm.Views.EmployeesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:WpfMvvm.Views"
+      mc:Ignorable="d"
+      Title="DepartmentPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Margin="0 0 5 0" HorizontalAlignment="Left" Padding="3" Click="EditEmployeeBtn_OnClick">Edit Employee</Button>
+            <Button Margin="0 0 5 0" HorizontalAlignment="Left" Padding="3" Click="AddEmployeeBtn_OnClick">New Employee</Button>
+        </StackPanel>
+
+        <ListView Grid.Row="1" Name="EmployeesListView" ItemsSource="{Binding Employees}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn DisplayMemberBinding="{Binding EmpNo}" Header="Employee Number" />
+                        <GridViewColumn DisplayMemberBinding="{Binding BirthDate}" Header="Birth Date" />
+                        <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="First Name" />
+                        <GridViewColumn DisplayMemberBinding="{Binding LastName}" Header="Last Name" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Gender}" Header="Gender" />
+                        <GridViewColumn DisplayMemberBinding="{Binding HireDate}" Header="Hire Date" />
+
+                        <GridViewColumn Header="Departments">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding DeptEmps}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding DeptNo}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <!-- -->
+                        <!-- <GridViewColumn Header="Managed Departments"> -->
+                        <!--     <GridViewColumn.CellTemplate> -->
+                        <!--         <DataTemplate> -->
+                        <!--             <ItemsControl ItemsSource="{Binding DeptManagers}"> -->
+                        <!--                 <ItemsControl.ItemTemplate> -->
+                        <!--                     <DataTemplate> -->
+                        <!--                         <TextBlock Text="{Binding DeptNo}" /> -->
+                        <!--                     </DataTemplate> -->
+                        <!--                 </ItemsControl.ItemTemplate> -->
+                        <!--             </ItemsControl> -->
+                        <!--         </DataTemplate> -->
+                        <!--     </GridViewColumn.CellTemplate> -->
+                        <!-- </GridViewColumn> -->
+                        <!-- -->
+                        <!-- <GridViewColumn Header="Salaries"> -->
+                        <!--     <GridViewColumn.CellTemplate> -->
+                        <!--         <DataTemplate> -->
+                        <!--             <ItemsControl ItemsSource="{Binding Salaries}"> -->
+                        <!--                 <ItemsControl.ItemTemplate> -->
+                        <!--                     <DataTemplate> -->
+                        <!--                         <TextBlock Text="{Binding Salary1}" /> -->
+                        <!--                     </DataTemplate> -->
+                        <!--                 </ItemsControl.ItemTemplate> -->
+                        <!--             </ItemsControl> -->
+                        <!--         </DataTemplate> -->
+                        <!--     </GridViewColumn.CellTemplate> -->
+                        <!-- </GridViewColumn> -->
+
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
